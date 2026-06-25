@@ -15,9 +15,9 @@ st.set_page_config(
 # ── Load model, scaler, dan fitur ─────────────────────────────────────────────
 @st.cache_resource
 def load_artifacts():
-    model    = joblib.load("deployment/best_model_rf.joblib")
-    scaler   = joblib.load("deployment/scaler.joblib")
-    features = joblib.load("deployment/selected_features.joblib")
+    model    = joblib.load("best_model_rf.joblib")
+    scaler   = joblib.load("scaler.joblib")
+    features = joblib.load("selected_features.joblib")
     return model, scaler, features
 
 model, scaler, selected_features = load_artifacts()
