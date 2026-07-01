@@ -32,7 +32,7 @@ bengkod-churn/
 ├── datasets/
 │   └── Sales - Marketing customer dataset.csv
 ├── notebook/
-│   └── UAS.ipynb
+│   └── UAS_BENGKOD_(CHURN).ipynb
 ├── app.py
 ├── best_model_rf.joblib
 ├── requirements.txt
