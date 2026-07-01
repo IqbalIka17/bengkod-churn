@@ -25,17 +25,22 @@ Proyek ini merupakan tugas **Ujian Akhir Semester (UAS)** Bengkel Koding Data Sc
 
 ## 📂 Struktur Repository
 
+
 ```
 bengkod-churn/
-├── app.py                      # Aplikasi Streamlit
-├── requirements.txt            # Dependensi Python
-├── best_model_rf.joblib        # Model Random Forest terbaik
-├── scaler.joblib               # StandardScaler
-├── selected_features.joblib    # Daftar fitur terpilih
-├── datasets/                   # Dataset Sales & Marketing Customer
-├── notebook/                   # Jupyter Notebook pengerjaan UAS
-└── README.md                   # Dokumentasi proyek
+├── .devcontainer/
+├── datasets/
+│   └── Sales - Marketing customer dataset.csv
+├── notebook/
+│   └── UAS.ipynb
+├── app.py
+├── best_model_rf.joblib
+├── requirements.txt
+├── scaler.joblib
+├── selected_features.joblib
+└── README.md
 ```
+
 
 ---
 
