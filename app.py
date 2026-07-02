@@ -237,6 +237,48 @@ if predict_btn:
     st.pyplot(fig)
     plt.close()
 
+    # ── Rekap Input ───────────────────────────────────────────────────────────
+    st.subheader("📋 Rekap Data yang Diinput")
+
+    recap_labels = {
+        "age": "Usia",
+        "is_premium_user": "Premium User",
+        "tenure_days": "Lama Berlangganan (hari)",
+        "days_since_last_purchase": "Hari Sejak Pembelian Terakhir",
+        "last_3_month_purchase_freq": "Frekuensi Beli 3 Bulan Terakhir",
+        "total_visits": "Total Kunjungan",
+        "avg_session_time": "Rata-rata Waktu Sesi (menit)",
+        "pages_per_session": "Halaman per Sesi",
+        "total_spent": "Total Pengeluaran",
+        "avg_order_value": "Rata-rata Nilai Transaksi",
+        "lifetime_value": "Lifetime Value",
+        "discount_used": "Gunakan Diskon?",
+        "email_open_rate": "Email Open Rate",
+        "email_click_rate": "Email Click Rate",
+        "satisfaction_score": "Skor Kepuasan",
+        "nps_score": "NPS Score",
+        "support_tickets": "Jumlah Tiket Support",
+        "refund_requested": "Pernah Request Refund?",
+        "delivery_delay_days": "Keterlambatan Pengiriman (hari)",
+        "marketing_spend_per_user": "Marketing Spend per User",
+    }
+
+    binary_cols = {"is_premium_user", "discount_used", "refund_requested"}
+
+    recap_rows = []
+    for col, val in input_dict.items():
+        label = recap_labels.get(col, col)
+        if col in binary_cols:
+            display_val = "Ya ✓" if val == 1 else "Tidak ✗"
+        elif isinstance(val, float):
+            display_val = f"{val:,.2f}"
+        else:
+            display_val = f"{val:,}"
+        recap_rows.append({"Variabel": label, "Nilai": display_val})
+
+    recap_df = pd.DataFrame(recap_rows)
+    st.dataframe(recap_df, use_container_width=True, hide_index=True)
+
     # Rekomendasi aksi
     st.subheader("💡 Rekomendasi Tindakan")
     if pred == 1:
