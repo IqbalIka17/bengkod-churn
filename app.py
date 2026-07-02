@@ -68,35 +68,95 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("**📋 Data Demografis & Akun**")
-    age             = st.number_input("Usia", min_value=18, max_value=100, value=35)
-    is_premium_user = st.selectbox("Premium User", [0, 1],
-                                    format_func=lambda x: "Ya ✓" if x == 1 else "Tidak ✗")
-    tenure_days     = st.number_input("Lama Berlangganan (hari)", min_value=0, max_value=2000, value=365)
-    days_since_last = st.number_input("Hari Sejak Pembelian Terakhir", min_value=0, max_value=1000, value=30)
-    last_3month     = st.number_input("Frekuensi Beli 3 Bulan Terakhir", min_value=0, max_value=50, value=3)
+    age = st.number_input(
+        "Usia", min_value=18, max_value=100, value=35,
+        help="Usia pelanggan dalam tahun."
+    )
+    is_premium_user = st.selectbox(
+        "Premium User", [0, 1],
+        format_func=lambda x: "Ya ✓" if x == 1 else "Tidak ✗",
+        help="Status keanggotaan premium pelanggan (Ya = 1, Tidak = 0)."
+    )
+    tenure_days = st.number_input(
+        "Lama Berlangganan (hari)", min_value=0, max_value=2000, value=365,
+        help="Lama pelanggan telah berlangganan/menjadi member, dihitung dalam hari sejak pertama kali bergabung."
+    )
+    days_since_last = st.number_input(
+        "Hari Sejak Pembelian Terakhir", min_value=0, max_value=1000, value=30,
+        help="Jumlah hari sejak transaksi/pembelian terakhir pelanggan. Semakin besar nilainya, semakin lama pelanggan tidak bertransaksi."
+    )
+    last_3month = st.number_input(
+        "Frekuensi Beli 3 Bulan Terakhir", min_value=0, max_value=50, value=3,
+        help="Frekuensi pembelian pelanggan dalam 3 bulan terakhir."
+    )
 
 with col2:
     st.markdown("**💰 Aktivitas & Transaksi**")
-    total_visits      = st.number_input("Total Kunjungan", min_value=0, max_value=500, value=20)
-    avg_session_time  = st.number_input("Rata-rata Waktu Sesi (menit)", min_value=0.0, max_value=120.0, value=10.0, step=0.5)
-    pages_per_session = st.number_input("Halaman per Sesi", min_value=0.0, max_value=50.0, value=5.0, step=0.5)
-    total_spent       = st.number_input("Total Pengeluaran", min_value=0.0, max_value=100000.0, value=500.0, step=50.0)
-    avg_order_value   = st.number_input("Rata-rata Nilai Transaksi", min_value=0.0, max_value=10000.0, value=100.0, step=10.0)
-    lifetime_value    = st.number_input("Lifetime Value", min_value=0.0, max_value=100000.0, value=1000.0, step=100.0)
-    discount_used     = st.selectbox("Gunakan Diskon?", [0, 1],
-                                      format_func=lambda x: "Ya ✓" if x == 1 else "Tidak ✗")
+    total_visits = st.number_input(
+        "Total Kunjungan", min_value=0, max_value=500, value=20,
+        help="Total jumlah kunjungan pelanggan ke platform/website."
+    )
+    avg_session_time = st.number_input(
+        "Rata-rata Waktu Sesi (menit)", min_value=0.0, max_value=120.0, value=10.0, step=0.5,
+        help="Rata-rata durasi satu sesi kunjungan pelanggan, dalam menit."
+    )
+    pages_per_session = st.number_input(
+        "Halaman per Sesi", min_value=0.0, max_value=50.0, value=5.0, step=0.5,
+        help="Rata-rata jumlah halaman yang dibuka pelanggan dalam satu sesi kunjungan."
+    )
+    total_spent = st.number_input(
+        "Total Pengeluaran", min_value=0.0, max_value=100000.0, value=500.0, step=50.0,
+        help="Total nilai uang yang telah dibelanjakan pelanggan secara keseluruhan."
+    )
+    avg_order_value = st.number_input(
+        "Rata-rata Nilai Transaksi", min_value=0.0, max_value=10000.0, value=100.0, step=10.0,
+        help="Rata-rata nilai transaksi per pesanan (Average Order Value/AOV)."
+    )
+    lifetime_value = st.number_input(
+        "Lifetime Value", min_value=0.0, max_value=100000.0, value=1000.0, step=100.0,
+        help="Estimasi total nilai/kontribusi pelanggan terhadap bisnis selama menjadi pelanggan (Customer Lifetime Value/CLV)."
+    )
+    discount_used = st.selectbox(
+        "Gunakan Diskon?", [0, 1],
+        format_func=lambda x: "Ya ✓" if x == 1 else "Tidak ✗",
+        help="Menandakan apakah pelanggan pernah menggunakan diskon/kupon (Ya = 1, Tidak = 0)."
+    )
 
 with col3:
     st.markdown("**📧 Email, Kepuasan & Layanan**")
-    email_open_rate    = st.slider("Email Open Rate", 0.0, 1.0, 0.3, step=0.01)
-    email_click_rate   = st.slider("Email Click Rate", 0.0, 1.0, 0.1, step=0.01)
-    satisfaction_score = st.slider("Skor Kepuasan", 0.0, 10.0, 7.0, step=0.1)
-    nps_score          = st.slider("NPS Score", -100, 100, 30)
-    support_tickets    = st.number_input("Jumlah Tiket Support", min_value=0, max_value=20, value=1)
-    refund_requested   = st.selectbox("Pernah Request Refund?", [0, 1],
-                                       format_func=lambda x: "Ya ✓" if x == 1 else "Tidak ✗")
-    delivery_delay     = st.number_input("Keterlambatan Pengiriman (hari)", min_value=0, max_value=30, value=0)
-    marketing_spend    = st.number_input("Marketing Spend per User", min_value=0.0, max_value=1000.0, value=50.0, step=5.0)
+    email_open_rate = st.slider(
+        "Email Open Rate", 0.0, 1.0, 0.3, step=0.01,
+        help="Rasio email marketing yang dibuka pelanggan dari total email yang dikirim (skala 0–1)."
+    )
+    email_click_rate = st.slider(
+        "Email Click Rate", 0.0, 1.0, 0.1, step=0.01,
+        help="Rasio email yang di-klik (link/CTA) oleh pelanggan dari total email yang dikirim (skala 0–1)."
+    )
+    satisfaction_score = st.slider(
+        "Skor Kepuasan", 0.0, 10.0, 7.0, step=0.1,
+        help="Skor kepuasan pelanggan terhadap layanan, biasanya berasal dari survei (skala 0–10)."
+    )
+    nps_score = st.slider(
+        "NPS Score", -100, 100, 30,
+        help="Net Promoter Score — skor loyalitas pelanggan yang mengukur kemungkinan pelanggan merekomendasikan produk/layanan (skala -100 sampai 100)."
+    )
+    support_tickets = st.number_input(
+        "Jumlah Tiket Support", min_value=0, max_value=20, value=1,
+        help="Jumlah tiket bantuan/keluhan (customer support) yang pernah dibuat pelanggan."
+    )
+    refund_requested = st.selectbox(
+        "Pernah Request Refund?", [0, 1],
+        format_func=lambda x: "Ya ✓" if x == 1 else "Tidak ✗",
+        help="Menandakan apakah pelanggan pernah mengajukan permintaan refund (Ya = 1, Tidak = 0)."
+    )
+    delivery_delay = st.number_input(
+        "Keterlambatan Pengiriman (hari)", min_value=0, max_value=30, value=0,
+        help="Jumlah hari keterlambatan pengiriman yang pernah dialami pelanggan."
+    )
+    marketing_spend = st.number_input(
+        "Marketing Spend per User", min_value=0.0, max_value=1000.0, value=50.0, step=5.0,
+        help="Besarnya biaya marketing yang dikeluarkan perusahaan per pelanggan (marketing spend per user)."
+    )
 
 # ── Prediksi ──────────────────────────────────────────────────────────────────
 st.divider()
